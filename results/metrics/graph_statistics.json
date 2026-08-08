@@ -1,0 +1,11 @@
+{
+  "number_of_nodes": 169343,
+  "number_of_edges": 1166243,
+  "feature_dimension": 128,
+  "number_of_classes": 40,
+  "density": 4.066840277668502e-05,
+  "average_in_degree": 6.886868476867676,
+  "average_out_degree": 6.886868476867676,
+  "connected_components": 1,
+  "largest_component_size": 169343
+}
