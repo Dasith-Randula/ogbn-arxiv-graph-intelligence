@@ -165,6 +165,20 @@ def get_dashboard_css(theme: str = "light") -> str:
         display: block !important;
     }}
 
+    /* Ensure sidebar cannot be translated off-screen or hidden by transform/positioning
+       (some Streamlit versions move the sidebar with transforms when collapsed). */
+    section[data-testid="stSidebar"], .stSidebar, [data-testid="stSidebar"] {{
+        transform: none !important;
+        -webkit-transform: none !important;
+        left: 0 !important;
+        right: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 9999 !important;
+    }}
+
     /* Hide native Streamlit collapse/expand controls so the sidebar stays permanently open */
     [data-testid="stSidebarCollapsedControl"],
     [data-testid="collapsedControl"],
