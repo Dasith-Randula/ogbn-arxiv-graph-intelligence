@@ -153,43 +153,32 @@ def get_dashboard_css(theme: str = "light") -> str:
         padding: 1rem 0.65rem 1rem 0.65rem;
     }}
 
+    /* Keep main app containers overflow-visible so controls are not clipped */
     .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {{
         overflow: visible !important;
     }}
 
-    [data-testid="stSidebarCollapsedControl"],
-    [data-testid="collapsedControl"],
-    [data-testid="stSidebarCollapseButton"],
-    button[data-testid="stExpandSidebarButton"] {{
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        position: fixed !important;
-        left: 10px !important;
-        top: 70px !important;
-        z-index: 999999 !important;
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
-        min-height: 38px !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border-radius: 16px !important;
-        background: {reopen_background} !important;
-        color: {reopen_icon} !important;
-        border: 1px solid {reopen_border} !important;
-        box-shadow: 0 8px 22px rgba(15,23,42,0.10) !important;
-        transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease !important;
+    /* Force sidebar visible (prevent Streamlit from collapsing visually) */
+    .stSidebar[aria-expanded="false"], .stSidebar {{
+        width: 300px !important;
+        min-width: 300px !important;
+        display: block !important;
     }}
 
+    /* Hide native Streamlit collapse/expand controls so the sidebar stays permanently open */
     [data-testid="stSidebarCollapsedControl"],
     [data-testid="collapsedControl"],
     [data-testid="stSidebarCollapseButton"],
-    button[data-testid="stExpandSidebarButton"]:hover {{
-        transform: translateY(-1px) !important;
-        background: {reopen_hover} !important;
-        box-shadow: 0 10px 28px rgba(15,23,42,0.17) !important;
+    button[data-testid="stExpandSidebarButton"],
+    button[data-testid="stCollapseSidebarButton"] {{
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }}
     
 
